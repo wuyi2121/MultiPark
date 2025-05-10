@@ -2,12 +2,12 @@ body {
   font-family: 'Noto Sans', sans-serif;
 }
 
-.gradient-text {
-  font-size: 3rem; /* 增大字号 */
-  background: linear-gradient(to right, #1e90ff, #00bfff); /* 蓝色渐变 */
-  -webkit-background-clip: text; /* 仅应用渐变到文字 */
-  -webkit-text-fill-color: transparent; /* 使文字填充透明以显示渐变 */
-  font-weight: bold; /* 可选：加粗文字 */
+.gradient-blue-text {
+  font-size: 3rem; /* 可根据需要调整 */
+  font-weight: bold;
+  background: linear-gradient(90deg, #007BFF, #00C6FF); /* 深蓝到亮蓝 */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .publication-title {
