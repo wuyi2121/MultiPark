@@ -12,6 +12,8 @@ body {
 
 .publication-title {
   font-size: 5rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem; 
 }
 
 .footer .icon-link {
@@ -58,16 +60,16 @@ body {
 }
 
 .teaser .hero-body {
-  padding-top: 0;
-  padding-bottom: 0rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
 }
 
 .teaser {
   font-family: 'Google Sans', sans-serif;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
-
-.publication-title {}
 
 .publication-banner {
   max-height: parent;
