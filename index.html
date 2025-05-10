@@ -139,19 +139,18 @@
                             <div class="publication-links">
                                 <!-- Talk Link. -->
                                 <span class="link-block">
-                                    <a href="https://youtu.be/Bf30cs5MU1I"
-                                        class="external-link button is-normal is-rounded is-dark" 
-                                        disabled>
+                                    <a href="./static/trackvla.pdf"
+                                        class="external-link button is-normal is-rounded is-dark" >
                                         <span class="icon">
-                                            <i class="fab fa-youtube"></i>
+                                            <i class="fab fa-file-pdf"></i>
                                         </span>
-                                        <span>Talk</span>
+                                        <span>Paper</span>
                                     </a>
                                 </span>
                                 <!-- Code Link. -->
                                 <span class="link-block">
                                     <a href="https://github.com/robodhruv/visualnav-transformer"
-                                        class="external-link button is-normal is-rounded is-dark">
+                                        class="external-link button is-normal is-rounded is-dark" disabled>
                                         <span class="icon">
                                             <i class="fab fa-github-alt"></i>
                                         </span>
@@ -161,10 +160,10 @@
                                 <!-- Dataset Link. -->
                                 <span class="link-block">
                                     <a href="https://github.com/robodhruv/visualnav-transformer#data-wrangling"
-                                        class="external-link button is-normal is-rounded is-dark">
+                                        class="external-link button is-normal is-rounded is-dark" disabled>
                                         <span class="icon">
-                                            <i class="fas fa-database"></i> </span>
-                                        <span>Data</span>
+                                            <i class="fab fa-github-alt"></i> </span>
+                                        <span>Benchmark</span>
                                     </a>
                                 </span>
 
@@ -191,19 +190,17 @@
         <div class="container is-max-desktop is-centered has-text-justified is-size-5">
             <div class="hero-body">
                 <video id="teaser" disableRemotePlayback autoplay muted loop playsinline fetchpriority="high"
-                    poster="./static/images/teaser_new.jpeg">
-                    <source src="./static/videos/teaser_new.mp4" type="video/mp4">
+                    poster="./static/images/teaser.png">
+                    <source src="./static/videos/teaser.mp4" type="video/mp4">
                 </video>
                 <p>
-                    General Navigation Models are general-purpose goal-conditioned visual navigation policies trained on
-                    diverse, cross-embodiment training data, and can control many different robots in zero-shot. They
-                    can also be efficiently fine-tuned, or <i>adapted</i>, to new robots and downstream tasks.
+                    <strong><em>TrackVLA</em></strong> is a vision-language-action model capable of simultaneous object recognition and visual tracking, trained on a dataset of 1.7 million samples. It demonstrates robust tracking, long-horizon tracking, and cross-domain generalization across diverse challenging environments.
                 </p>
             </div>
         </div>
     </section>
 
-    <!-- Results Carousel -->
+    <!-- Results Carousel--> 
     <section class="hero is-light is-small">
         <div class="hero-body">
             <div class="container">
