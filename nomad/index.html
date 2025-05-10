@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="description"
+        content="NoMaD is a Transformer-based diffusion policy that can function both as a task-conditioned and task-agnostic model.">
+    <meta name="keywords" content="NoMaD, diffusion, robotics, foundation model">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>NoMaD: Goal Masking Diffusion Policies for Navigation and Exploration</title>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZYH3N96LN5"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-ZYH3N96LN5');
+    </script>
+
+    <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+    <link rel="stylesheet" href="../static/css/bulma.min.css">
+    <link rel="stylesheet" href="../static/css/slick.css">
+    <link rel="stylesheet" href="../static/css/slick-theme.css">
+    <link rel="stylesheet" href="../static/css/fontawesome.all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+    <link rel="stylesheet" href="../static/css/index.css">
+    <link rel="icon" href="./static/images/favicon.svg">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script defer src="../static/js/fontawesome.all.min.js"></script>
+    <script src="../static/js/slick.min.js"></script>
+    <script src="../static/js/index.js"></script>
+</head>
+
+<body>
+
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
+        </div>
+        <div class="navbar-menu">
+            <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+                <a class="navbar-item" href="https://general-navigation-models.github.io/">
+                    <span class="icon">
+                        <i class="fas fa-home"></i>
+                    </span>
+                </a>
+
+                <div class="navbar-item has-dropdown is-hoverable">
+                    <a class="navbar-link">
+                        More Research
+                    </a>
+                    <div class="navbar-dropdown">
+                        <a class="navbar-item" href="https://sites.google.com/view/drive-any-robot">
+                            GNM: A General Navigation Model to Drive Any Robot
+                        </a>
+                        <a class="navbar-item" href="https://general-navigation-models.github.io/vint">
+                            ViNT: A Foundation Model for Visual Navigation
+                        </a>
+                        <a class="navbar-item" href="https://sites.google.com/view/viking-release">
+                            ViKiNG: Kilometer-Scale Navigation with Geographic Hints
+                        </a>
+                        <a class="navbar-item" href="https://sites.google.com/view/lmnav">
+                            LM-Nav: Navigation with Pre-Trained Language and Vision Models
+                        </a>
+                        <a class="navbar-item" href="https://sites.google.com/view/fastrlap">
+                            FastRLAP: High-Speed Driving via Real-World Online RL
+                        </a>
+                        <a class="navbar-item" href="https://sites.google.com/view/sacson-review/home">
+                            SACSoN: Scalable Autonomous Control for Social Navigation
+                        </a>
+                        <a class="navbar-item" href="https://robotics-transformer-x.github.io">
+                            Open X-Embodiment: Robotic Learning Datasets and RT-X Models
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </nav>
+
+
+    <section class="hero">
+        <div class="hero-body">
+            <div class="container is-max-desktop">
+                <div class="columns is-centered">
+                    <div class="column has-text-centered">
+                        <h1 class="title is-2 publication-title">NoMaD: Goal Masking Diffusion Policies for Navigation
+                            and Exploration</h1>
+                        <div class="is-size-5 publication-authors">
+                            <span class="author-block">
+                                <a href="https://ajaysridhar.com/">Ajay Sridhar</a>,</span>
+                            <span class="author-block">
+                                <a href="https://cs.berkeley.edu/~shah">Dhruv Shah</a>,</span>
+                            <span class="author-block">
+                                <a href="">Catherine Glossop</a>,
+                            </span>
+                            <span class="author-block">
+                                <a href="https://cs.berkeley.edu/~svlevine">Sergey Levine</a>
+                            </span>
+                        </div>
+
+                        <div class="is-size-6 publication-authors">
+                            <span class="author-block">UC Berkeley</span>
+                        </div>
+                        <br>
+                        
+                        <div class="is-size-5 publication-venue">
+                        <span class="venue-block"><span class="publication-awards">Best Paper Award Winner </span> at ICRA
+                            2024</span> <br>
+                        <span class="venue-block">Yokohama, Japan</span> <br>
+                        </div>
+                        <br>
+                        
+                        <div class="is-size-6 publication-venue">
+                          <span class="venue-block"><span class="publication-awards">Best Student Paper Award </span> Finalist at ICRA
+                            2024</span> <br>
+                          <span class="venue-block"><span class="publication-awards">Best Paper Award in Cognitive Robotics </span> Finalist at ICRA
+                            2024</span> <br>
+                          <span class="venue-block"><span class="publication-awards">Oral Talk </span> at NeurIPS Workshop on Foundation Models for Decision Making
+                            2023</span> <br>
+                          <span class="venue-block"><span class="publication-awards">Oral Talk </span> at CoRL Workshop on Pre-Training for Robot Learning 
+                            2023</span> <br>
+                        </div>
+
+                        <div class="column has-text-centered">
+                            <div class="publication-links">
+                                <!-- PDF Link. -->
+                                <span class="link-block">
+                                    <a href="https://arxiv.org/abs/2310.07896"
+                                        class="external-link button is-normal is-rounded is-dark">
+                                        <span class="icon">
+                                            <i class="fas fa-file-pdf"></i>
+                                        </span>
+                                        <span>Paper</span>
+                                    </a>
+                                </span>
+                                <span class="link-block">
+                                    <a href="http://arxiv.org/abs/2310.07896"
+                                        class="external-link button is-normal is-rounded is-dark">
+                                        <span class="icon">
+                                            <i class="ai ai-arxiv"></i>
+                                        </span>
+                                        <span>arXiv</span>
+                                    </a>
+                                </span>
+                                <!-- Video Link. -->
+                                <span class="link-block">
+                                    <a href="https://www.youtube.com/watch?v=zH8LaIapF6w"
+                                        class="external-link button is-normal is-rounded is-dark">
+                                        <span class="icon">
+                                            <i class="fab fa-youtube"></i>
+                                        </span>
+                                        <span>Video</span>
+                                    </a>
+                                </span>
+                                <!-- Code Link. -->
+                                <span class="link-block">
+                                    <a href="https://github.com/PrieureDeSion/visualnav-transformer"
+                                        class="external-link button is-normal is-rounded is-dark">
+                                        <span class="icon">
+                                            <i class="fab fa-github-alt"></i>
+                                        </span>
+                                        <span>Code</span>
+                                    </a>
+                                </span>
+                                <!-- Dataset Link. -->
+                                <span class="link-block">
+                                    <a href="https://github.com/robodhruv/visualnav-transformer#data-wrangling"
+                                        class="external-link button is-normal is-rounded is-dark">
+                                        <span class="icon">
+                                            <i class="fas fa-database"></i> </span>
+                                        <span>Data</span>
+                                    </a>
+                                </span>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="hero teaser">
+        <div class="container is-max-desktop is-centered has-text-justified is-size-5">
+            <div class="hero-body">
+                <video id="teaser" disableRemotePlayback autoplay muted loop playsinline fetchpriority="high"
+                    poster="./static/images/nomad_teaser.jpeg">
+                    <source src="./static/videos/nomad_teaser.mp4" type="video/mp4">
+                </video>
+                <p>
+                    NoMaD is a novel architecture for robotic navigation in previously unseen environments that uses a
+                    unified diffusion policy to jointly represent exploratory task-agnostic behavior and goal-directed
+                    task-specific behavior. NoMaD provides high capacity (both for modeling perception and control) and
+                    the ability to represent complex, multimodal distributions.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Results Carousel -->
+    <section class="hero is-light is-small">
+        <div class="hero-body">
+            <div class="container">
+                <div id="results-carousel" class="carousel results-carousel">
+                    <div class="item item-indoors">
+                        <video poster="" id="indoors" autoplay controls muted loop playsinline height="100%">
+                            <source src="./static/videos/nomad_indoors.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="item item-outdoors">
+                        <video poster="" id="outdoors" autoplay controls muted loop playsinline height="100%">
+                            <source src="./static/videos/nomad_outdoors.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="item item-baselines">
+                        <video poster="" id="baselines" autoplay controls muted loop playsinline height="100%">
+                            <source src="./static/videos/nomad_baselines.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container is-max-desktop">
+            <!-- Abstract. -->
+            <div class="columns is-centered has-text-centered">
+                <div class="column is-four-fifths">
+                    <h2 class="title is-3">Abstract</h2>
+                    <div class="content has-text-justified">
+                        <p>
+                            Robotic learning for navigation in unfamiliar environments needs to provide policies for
+                            both task-oriented navigation (i.e., reaching a goal that the robot has located), and
+                            task-agnostic exploration (i.e., searching for a goal in a novel setting). Typically, these
+                            roles are handled by separate models, for example by using subgoal proposals, planning, or
+                            separate navigation strategies. In this paper, we describe how we can train a single unified
+                            diffusion policy to handle both goal-directed navigation and goal-agnostic exploration, with
+                            the latter providing the ability to search novel environments, and the former providing the
+                            ability to reach a user-specified goal once it has been located. We show that this unified
+                            policy results in better overall performance when navigating to visually indicated goals in
+                            novel environments, as compared to approaches that use subgoal proposals from generative
+                            models, or prior methods based on latent variable models.
+                        </p>
+                        <p>
+                            We instantiate our method by using a large-scale Transformer-based policy trained on data
+                            from multiple ground robots, with a diffusion model decoder to flexibly handle both
+                            goal-conditioned and goal-agnostic navigation. Our experiments, conducted on a real-world
+                            mobile robot platform, show effective navigation in unseen environments in comparison with
+                            five alternative methods, and demonstrate significant improvements in performance and lower
+                            collision rates, despite utilizing smaller models than state-of-the-art approaches.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!--/ Abstract. -->
+
+            <!-- Paper video. -->
+            <div class="columns is-centered has-text-centered">
+                <div class="column is-four-fifths">
+                    <h2 class="title is-3">Summary Video</h2>
+                    <div class="publication-video">
+                        <!---TODO Dhruv: put video link here-->
+                        <iframe src="https://www.youtube.com/embed/zH8LaIapF6w?rel=0&amp;showinfo=0" frameborder="0"
+                            allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--/ Paper video. -->
+
+    <section class="section">
+        <div class="container is-max-desktop">
+            <div class="columns is-centered has-text-centered">
+
+                <div class="column">
+                    <h2 class="title is-3">NoMaD Architecture</h2>
+                    <div class="content has-text-justified">
+                        <p>
+                            NoMaD uses the ViNT model to encode a context vector from observations and a goal image, if
+                            performing goal-directed navigation. The context vector is then used to condition a
+                            diffusion model to generate a distribution of actions.
+                        </p>
+                        <video id="teaser" disableRemotePlayback autoplay muted loop playsinline fetchpriority="high"
+                            poster="./static/images/nomad_architecture.jpeg">
+                            <source src="./static/videos/nomad_explainer.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+
+                <!-- <div class="column">
+          <h2 class="title is-4">Adaptation</h2>
+          <div class="content has-text-justified">
+            <p>
+              ViNT can be fine-tuned by a mechanism akin to <i>prompt-tuning</i>, to support alternative goal
+              modalities.
+            </p>
+            <figure id="adaptation">
+              <img src="./static/images/vint_adaptation.jpg" alt="ViNT adaptation" />
+            </figure>
+          </div>
+        </div> -->
+
+            </div>
+            <div class="column is-centered has-text-centered">
+                <h2 class="title is-3">NoMaD Indoors</h2>
+                <div class="content has-text-justified">
+                    <p>
+                        NoMaD employs ViNT for encoding the context vector used to condition the diffusion process. This
+                        means it can explore <i>previously unseen</i> environments by employing a topological
+                        graph-based
+                        global
+                        planner. We show NoMaD exploring a previously unseen office environment, and reaching a goal. In
+                        this environment, NoMaD demonstrates the emergent capability to avoid walls and obstacles and
+                        produce multi-modal action distributions.
+                    </p>
+                    <!-- <div class="videos-flex"> -->
+                    <center>
+                        <video poster="" id="indoors-main" autoplay controls muted loop playsinline width="80%">
+                            <source src="./static/videos/nomad_indoors.mp4" type="video/mp4">
+                        </video>
+                    </center>
+                    <!-- </div> -->
+                </div>
+    </section>
+
+
+    <section class="section">
+        <div class="container is-max-desktop is-centered">
+            <center>
+                <h2 class="title is-3">NoMaD Outdoors</h2>
+            </center>
+            <br>
+            <div class="content has-text-justified">
+                <p>
+                    Beyond the structure of indoor environments, NoMaD is also capable of long horizon exploration and
+                    navigation in outdoor environments. We show NoMaD exploring a previously unseen outdoor environment,
+                    and reaching a goal. In this environment, NoMaD demonstrates the same capabilities as in the indoor
+                    environment while also sticking to sidewalks and avoiding roads as a result of implicit navigation
+                    preferences included in the dataset.
+                </p>
+                <!-- <div class="videos-flex"> -->
+                <center>
+                    <video poster="" id="go1-inside-2-main" autoplay controls muted loop playsinline width="80%">
+                        <source src="./static/videos/nomad_outdoors.mp4" type="video/mp4">
+                    </video>
+                </center>
+                <!-- </div> -->
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container is-max-desktop is-centered">
+            <center>
+                <h2 class="title is-3">Baseline Comparisons</h2>
+            </center>
+            <br>
+            <div class="content has-text-justified">
+                <p>
+                    We compared NoMaD against other state-of-the-art methods, including ViNT with image diffusion
+                    subgoals, autoregressive action generation, and VIB (Variational Information Bottleneck). We found
+                    that NoMaD outperforms all of these methods by reaching long-horizon goals with fewer to no
+                    collisions. The ability of NoMaD to represent multi-modal action distributions around obstacles
+                    allows it to avoid collisions and reach goals more effectively than other methods.
+                </p>
+                <!-- <div class="videos-flex"> -->
+                <center>
+                    <video poster="" id="go1-inside-2-main" autoplay controls muted loop playsinline width="80%">
+                        <source src="./static/videos/nomad_baselines.mp4" type="video/mp4">
+                    </video>
+                </center>
+                <!-- </div> -->
+            </div>
+        </div>
+    </section>
+
+
+    <!-- <section class="section">
+        <div class="container is-max-desktop is-centered">
+            <center>
+                <h2 class="title is-3">Adaptation to Downstream Tasks</h2>
+            </center>
+            <br>
+            <div class="content has-text-justified">
+                <p>
+                    Beyond its core functionality as an image goal-conditioned model, the strong navigational priors
+                    learned by ViNT can be adapted to a variety of downstream tasks, beyond navigating to image goals,
+                    by
+                    fine-tuning part or all of the model in novel environments or with new modalities of data.
+                </p>
+                <div class="columns is-centered has-text-centered">
+                    <div class="column is-two-thirds">
+                        <img src="./static/images/vint_finetuning.jpg" alt="ViNT fine-tuning" width="80%" />
+                        <div class="content has-text-justified" width="80%">
+                            ViNT can transfer navigational affordances to novel tasks (40% success in zero-shot), and
+                            efficiently masters the task (80% success) with less than 1 hour of fine-tuning data. <span
+                                class="vint">ViNT
+                                fine-tuning</span> outperforms <span class="baseline">a <i>specialist</i> model trained
+                                with 5&#x2715;
+                                data</span>.
+                        </div>
+                    </div>
+                    <div class="column is-one-thirds is-centered">
+                        <img src="./static/images/vint_adaptation.jpg" alt="ViNT adaptation" width="60%" />
+                        <div class="content has-text-justified" width="80%">
+                            ViNT can easily be <i>adapted</i> to other common forms of goal-specification by learning a
+                            mapping from
+                            the desired goal modality to the ViNT goal token.
+                        </div>
+                    </div>
+                </div>
+                <video poster="" id="carla-main" autoplay controls muted loop playsinline width="100%">
+                    <source src="./static/videos/vint_videos_carla.mp4" type="video/mp4">
+                </video>
+                <div class="content has-text-justified" width="80%">
+                    This allows ViNT to be adapted to a variety of new <span class="newrobot">robots</span>, <span
+                        class="newenv">environments</span>, <span class="newobjective">objectives</span>, and <span
+                        class="newgoal">goal modalities</span>. One
+                    such example is the massively out-of-distribution task of <span class="newrobot">controlling a
+                        car</span>
+                    <span class="newenv"> in a simulated urban
+                        environment</span> (ViNT was only trained on real data), <span class="newobjective">for the task
+                        of
+                        lane-keeping</span>, <span class="newgoal">and with high-level routing
+                        commands</span> (ViNT was only trained to reach image goals).
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="section">
+        <div class="container is-max-desktop">
+            <center>
+                <h2 class="title is-3">Emergent Behaviors</h2>
+            </center>
+            <br>
+            <div class="columns is-centered has-text-centered">
+
+                <div class="column">
+                    <h2 class="title is-4">Implicit Navigation Preferences</h2>
+                    <div class="content has-text-justified">
+                        <p>
+                            ViNT exhibits implicit <i>preferences</i> for following paved roads and narrow hallways
+                            while searching
+                            previously unseen environments, enabling efficient exploration.
+                        </p>
+                        <video poster="" id="implicit-preferences" autoplay controls muted loop playsinline
+                            height="100%">
+                            <source src="./static/videos/small/vint_videos_bww3.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+
+                <div class="column">
+                    <h2 class="title is-4">Robustness to Dynamic Pedestrians</h2>
+                    <div class="content is-centered has-text-justified">
+                        <p>
+                            ViNT can successfully navigate around a crowd of dynamic pedestrians and reach the goal
+                            behind them,
+                            despite its simple self-supervised training objective.
+                        </p>
+                        <video poster="" id="pedestrians" autoplay controls muted loop playsinline height="100%">
+                            <source src="./static/videos/small/vint_videos_pedestrian.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+
+            </div>
+        </div> -->
+
+
+    <section class="section" id="BibTeX">
+        <div class="container is-max-desktop content">
+            <h2 class="title">BibTeX</h2>
+            <pre><code>@article{sridhar2023nomad,
+                    author  = {Ajay Sridhar and Dhruv Shah and Catherine Glossop and Sergey Levine},
+                    title   = {{NoMaD: Goal Masked Diffusion Policies for Navigation and Exploration}},
+                    journal = {arXiv pre-print},
+                    year    = {2023},
+                    url     = {https://arxiv.org/abs/2310.07896}
+                  }</code></pre>
+        </div>
+    </section>
+    <br>
+    <center class="is-size-10">
+        The website design was adapted from <a href="https://nerfies.github.io" class="external-link"><span
+                class="dnerf">Nerfies</span></a>.
+    </center>
+    <br>
+</body>
+
+</html>
