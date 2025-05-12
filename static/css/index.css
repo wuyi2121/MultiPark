@@ -3,9 +3,9 @@ body {
 }
 
 .gradient-blue-text {
-  font-size: 3rem; /* 可根据需要调整 */
+  font-size: 3rem;
   font-weight: bold;
-  background: linear-gradient(90deg, #385492, #babbbe); /* 深蓝到亮蓝 */
+  background: linear-gradient(90deg, #385492, #babbbe);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
