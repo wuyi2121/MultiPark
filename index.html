@@ -309,7 +309,9 @@
                     <h2 class="title is-3">TrackVLA Pipeline</h2>
                     <div class="content has-text-justified">
                         <p>
-                            TrackVLA is a vision-language-action model that learns the synergy between object recognition and trajectory planning. It employs a language modeling head for recognition and an anchor-based diffusion model for trajectory planning.
+                            TrackVLA extends video-based VLM/VLA approaches by introducing a parallel prediction branch for both trajectory planning and target recognition.
+                            For trajectory planning, TrackVLA organizes online-captured video data, combining historical and current observations, and concatenates them with tracking instructions and a
+                            special tracking token. A diffusion transformer then decodes the output tokens from an LLM into waypoints. For recognition tasks, all video frames are encoded identically and processed in a conventional autoregressive manner.
                         </p>
                         <center>
                             <img src="./static/videos/pipeline.png" alt="Pipeline Image" width="80%">
@@ -322,7 +324,7 @@
                     <h2 class="title is-3">Dataset</h2>
                     <div class="content has-text-justified">
                         <p>
-                            TrackVLA is trained .
+                            To train our parallel-branch TrackVLA, we collect a total of 1.7M newly collected samples, including embodied visual tracking and video-based question-answering data.
                         </p>
                         <center>
                             <img src="./static/videos/dataset.png" alt="Pipeline Image" width="80%">
@@ -334,13 +336,7 @@
                 <h2 class="title is-3">Long-horizon Tracking</h2>
                 <div class="content has-text-justified">
                     <p>
-                        NoMaD employs ViNT for encoding the context vector used to condition the diffusion process. This
-                        means it can explore <i>previously unseen</i> environments by employing a topological
-                        graph-based
-                        global
-                        planner. We show NoMaD exploring a previously unseen office environment, and reaching a goal. In
-                        this environment, NoMaD demonstrates the emergent capability to avoid walls and obstacles and
-                        produce multi-modal action distributions.
+                        TrackVLA is capable of long-horizon tracking in diverse and dynamic environments. It can effectively track targets over long distances while remaining robust against distractors.
                     </p>
                     <!-- <div class="videos-flex"> -->
                     <center>
@@ -361,11 +357,7 @@
             <br>
             <div class="content has-text-justified">
                 <p>
-                    Beyond the structure of indoor environments, NoMaD is also capable of long horizon exploration and
-                    navigation in outdoor environments. We show NoMaD exploring a previously unseen outdoor environment,
-                    and reaching a goal. In this environment, NoMaD demonstrates the same capabilities as in the indoor
-                    environment while also sticking to sidewalks and avoiding roads as a result of implicit navigation
-                    preferences included in the dataset.
+                    We conducted a series of experiments to compare the tracking performance of TrackVLA with that of a state-of-the-art commercial tracking UAV based on a modular approach. As shown in the video, TrackVLA performs better in challenging scenarios such as target occlusion and fast motion, thanks to its powerful target reasoning capabilities.
                 </p>
                 <!-- <div class="videos-flex"> -->
                 <center>
@@ -386,11 +378,7 @@
             <br>
             <div class="content has-text-justified">
                 <p>
-                    We compared NoMaD against other state-of-the-art methods, including ViNT with image diffusion
-                    subgoals, autoregressive action generation, and VIB (Variational Information Bottleneck). We found
-                    that NoMaD outperforms all of these methods by reaching long-horizon goals with fewer to no
-                    collisions. The ability of NoMaD to represent multi-modal action distributions around obstacles
-                    allows it to avoid collisions and reach goals more effectively than other methods.
+                    TrackVLA is capable of reasoning about the environment, enabling it to autonomously recognize traversable areas, avoid obstacles, and generalize to fast-motion and low-illumination scenarios without requiring additional training data.
                 </p>
                 <div class="videos-flex" style="display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap;">
                     <video poster="" autoplay controls muted loop playsinline width="32%">
@@ -410,16 +398,12 @@
     <section class="section">
         <div class="container is-max-desktop is-centered">
             <center>
-                <h2 class="title is-3">Passive Tracking</h2>
+                <h2 class="title is-3">Cross-domain Generalization</h2>
             </center>
             <br>
             <div class="content has-text-justified">
                 <p>
-                    Beyond the structure of indoor environments, NoMaD is also capable of long horizon exploration and
-                    navigation in outdoor environments. We show NoMaD exploring a previously unseen outdoor environment,
-                    and reaching a goal. In this environment, NoMaD demonstrates the same capabilities as in the indoor
-                    environment while also sticking to sidewalks and avoiding roads as a result of implicit navigation
-                    preferences included in the dataset.
+                    TrackVLA is capable of cross-domain generalization, enabling robust tracking across diverse scene styles, viewpoints, and camera parameters without additional adaptation.
                 </p>
                 <!-- <div class="videos-flex"> -->
                 <center>
