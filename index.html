@@ -44,11 +44,11 @@
                 <div class="columns is-centered">
                     <div class="column has-text-centered">
                         <h1 class="title is-2 publication-title">
-                            <span class="gradient-blue-text">MultiPark</span>: Multimodal Parking Transformer with Next-Segment Prediction
+                            <span class="gradient-purple-text">MultiPark</span>: Multimodal Parking Transformer with Next-Segment Prediction
                         </h1>
                         <div class="is-size-5 publication-authors">
                             <span class="author-block">
-                                <a href="https://wsakobe.github.io/">Han Zheng</a><sup>1</sup>
+                                <a href="https://wsakobe.github.io/">Han Zheng</a><sup>1†</sup>
                             </span>
                             <span class="author-block">
                                 <a href="https://scholar.google.com/citations?hl=en&user=LZVx3I0AAAAJ&view_op=list_works&sortby=pubdate">Zikang Zhou</a><sup>2</sup>
@@ -86,7 +86,7 @@
                           </div>
               
                           <div class="is-size-5 publication-authors">
-                            *Corresponding Author&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;†Equal Advising
+                            *Corresponding Author&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;†Project Lead: hanzheng@sjtu.edu.cn
                           </div>
 
                         <div class="column has-text-centered">
@@ -147,28 +147,12 @@
                             </div>
 
                         </div>
-                        <div class="text" style="font-size: 20px;">
-                            <b>Conference on Robot Learning <i>(CoRL 2025)</i></b>
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="hero teaser">
-        <div class="container is-max-desktop is-centered has-text-justified is-size-5">
-            <div class="hero-body">
-                <video id="teaser" disableRemotePlayback autoplay muted loop playsinline fetchpriority="high"
-                    poster="./static/videos/teaser.png">
-                    <source src="./static/videos/teaser_new.mp4" type="video/mp4">
-                </video>
-                <p>
-                    <strong><em>TrackVLA</em></strong> is a vision-language-action model capable of simultaneous object recognition and visual tracking, trained on a dataset of 1.7 million samples. It demonstrates robust tracking, long-horizon tracking, and cross-domain generalization across diverse challenging environments.
-                </p>
-            </div>
-        </div>
-    </section>
 
     <!-- Results Carousel--> 
     <section class="hero is-light is-small">
@@ -235,7 +219,17 @@
                     <h2 class="title is-3">Abstract</h2>
                     <div class="content has-text-justified">
                         <p>
-                            Embodied visual tracking is a fundamental skill in Embodied AI, enabling an agent to follow a specific target in dynamic environments using only egocentric vision. This task is inherently challenging as it requires both accurate target recognition and effective trajectory planning under conditions of severe occlusion and high scene dynamics. Existing approaches typically address this challenge through a modular separation of recognition and planning. In this work, we propose TrackVLA, a Vision-Language-Action (VLA) model that learns the synergy between object recognition and trajectory planning. Leveraging a shared LLM backbone, we employ a language modeling head for recognition and an anchor-based diffusion model for trajectory planning. To train TrackVLA, we construct an Embodied Visual Tracking Benchmark (EVT-Bench) and collect diverse difficulty levels of recognition samples, resulting in a dataset of 1.7 million samples. Through extensive experiments in both synthetic and real-world environments, TrackVLA demonstrates SOTA performance and strong generalizability. It significantly outperforms existing methods on public benchmarks in a zero-shot manner while remaining robust to high dynamics and occlusion in real-world scenarios at 10 FPS inference speed.
+                            Parking accurately and safely in highly constrained spaces remains a critical challenge.
+Unlike structured driving environments, parking requires executing complex maneuvers such as frequent gear shifts and steering saturation.
+Recent attempts to employ imitation learning (IL) for parking have achieved promising results.  
+However, existing works ignore the multimodal nature of parking behavior in lane-free open space, failing to derive multiple plausible solutions under the same situation.
+Notably, IL-based methods encompass inherent causal confusion, so enabling a neural network to generalize across diverse parking scenarios is particularly difficult.
+To address these challenges, we propose MultiPark, an autoregressive transformer for multimodal parking.
+To handle paths filled with abrupt turning points, we introduce a data-efficient next-segment prediction paradigm, enabling spatial generalization and temporal extrapolation.
+Furthermore, we design learnable parking queries factorized into gear, longitudinal, and lateral components, parallelly decoding diverse parking behaviors.
+To mitigate causal confusion in IL, our method employs target-centric pose and ego-centric collision as outcome-oriented loss across all modalities beyond pure imitation loss.
+Evaluations of real-world datasets demonstrate that MultiPark achieves state-of-the-art performance across various scenarios.
+We deploy MultiPark on a production vehicle, further confirming our approach’s robustness in real-world parking environments.
                         </p>
                     </div>
                 </div>
