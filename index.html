@@ -254,12 +254,13 @@
         <div class="container is-max-desktop">
             <div class="columns is-centered has-text-centered">
                 <div class="column">
-                    <h2 class="title is-3">MultiPark Framework</h2>
+                    <h2 class="title is-3">Motivation</h2>
                     <div class="content has-text-justified">
                         <p>
-                            A BEV encoder first takes inputs and obtains the scene features as key and value for cross-attention. 
-                            Next, a query-based decoder explores both backward and forward gear, where the endpoint serves as the standpoint in the next segment, thereby rolling out autoregressively and producing multimodal parking paths. 
-                            Finally, we select the optimal path and utilize the predicted waypoints to control the vehicle. </p>
+                            In (a), the parking path involves both forward and backward gears, resulting in discontinuous segments with sharp turning points. 
+                            In (b), under the same scenario, different drivers may yield distinct parking solutions. 
+                            In (c), the blue path accumulates errors and causes collisions, but the green path can recover from mistakes occurring in the first segment. 
+                        </p>
                         <center>
                             <img src="./static/videos/pipeline.png" alt="Pipeline Image" width="80%">
                         </center>
@@ -268,123 +269,39 @@
             </div>
             <div class="columns is-centered has-text-centered">
                 <div class="column">
-                    <h2 class="title is-3">Dataset</h2>
+                    <h2 class="title is-3">MultiPark Framework</h2>
                     <div class="content has-text-justified">
                         <p>
-                            To train our parallel-branch TrackVLA, we collect a total of 1.7M newly collected samples, including embodied visual tracking and video-based question-answering data.
+                            A BEV encoder first takes inputs and obtains the scene features as key and value for cross-attention. 
+                            Next, a query-based decoder explores both backward and forward gear, where the endpoint serves as the standpoint in the next segment, thereby rolling out autoregressively and producing multimodal parking paths. 
+                            Finally, we select the optimal path and utilize the predicted waypoints to control the vehicle. 
                         </p>
+                        <center>
+                            <img src="./static/videos/pipeline.png" alt="Pipeline Image" width="80%">
+                        </center>
+                    </div>
+                </div>
+            </div>
+            <div class="columns is-centered has-text-centered">
+                <div class="column">
+                    <h2 class="title is-3">SOTA Closed-loop Performance on Real-world Datasets</h2>
+                    <div class="content has-text-justified">
                         <center>
                             <img src="./static/videos/dataset.png" alt="Pipeline Image" width="80%">
                         </center>
                     </div>
                 </div>
             </div>
-            <div class="column is-centered has-text-centered">
-                <h2 class="title is-3">Long-horizon Tracking</h2>
-                <div class="content has-text-justified">
-                    <p>
-                        TrackVLA is capable of long-horizon tracking in diverse and dynamic environments. It can effectively track targets over long distances while remaining robust against distractors.
-                    </p>
-                    <!-- <div class="videos-flex"> -->
-                    <center>
-                        <video poster="" id="indoors-main" autoplay controls muted loop playsinline width="80%">
-                            <source src="./static/videos/long_horizon.mp4" type="video/mp4">
-                        </video>
-                    </center>
-                    <!-- </div> -->
-                </div>
-    </section>
-
-
-    <section class="section">
-        <div class="container is-max-desktop is-centered">
-            <center>
-                <h2 class="title is-3">Comparison with Commercial Tracking UAV</h2>
-            </center>
-            <br>
-            <div class="content has-text-justified">
-                <p>
-                    We conducted a series of experiments to compare the tracking performance of TrackVLA with that of a state-of-the-art commercial tracking UAV based on a modular approach. As shown in the video, TrackVLA performs better in challenging scenarios such as target occlusion and fast motion, thanks to its powerful target reasoning capabilities.
-                </p>
-                <!-- <div class="videos-flex"> -->
-                <center>
-                    <video poster="" id="go1-inside-2-main" autoplay controls muted loop playsinline width="80%">
-                        <source src="./static/videos/comparison.mp4" type="video/mp4">
-                    </video>
-                </center>
-                <!-- </div> -->
-            </div>
-        </div>
-    </section>
-
-    <section class="section">
-        <div class="container is-max-desktop is-centered">
-            <center>
-                <h2 class="title is-3">Environmental Reasoning</h2>
-            </center>
-            <br>
-            <div class="content has-text-justified">
-                <p>
-                    TrackVLA is capable of reasoning about the environment, enabling it to autonomously recognize traversable areas, avoid obstacles, and generalize to fast-motion and low-illumination scenarios without requiring additional training data.
-                </p>
-                <!-- <div class="videos-flex" style="display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap;">
-                    <video poster="" autoplay controls muted loop playsinline style="width: 48%;">
-                        <source src="./static/videos/robust_tracking.mp4" type="video/mp4">
-                    </video>
-                    <video poster="" autoplay controls muted loop playsinline style="width: 48%;">
-                        <source src="./static/videos/pursuit.mp4" type="video/mp4">
-                    </video>
-                    <video poster="" autoplay controls muted loop playsinline style="width: 48%;">
-                        <source src="./static/videos/dark.mp4" type="video/mp4">
-                    </video>
-                </div> -->
-            </div>
-        </div>
-    </section>
-
-    <section class="hero is-light is-small">
-        <div class="hero-body">
-            <div class="container">
-                <div id="results-carousel" class="carousel results-carousel">
-                    <div class="item item-robust">
-                        <video poster="" id="robust" autoplay controls muted loop playsinline height="100%">
-                            <source src="./static/videos/robust_tracking.mp4" type="video/mp4">
-                        </video>
-                    </div>
-                    <div class="item item-pursuit">
-                        <video poster="" id="pursuit" autoplay controls muted loop playsinline height="100%">
-                            <source src="./static/videos/pursuit.mp4" type="video/mp4">
-                        </video>
-                    </div>
-                    <div class="item item-dark">
-                        <video poster="" id="dark" autoplay controls muted loop playsinline height="100%">
-                            <source src="./static/videos/dark.mp4" type="video/mp4">
-                        </video>
+           <div class="columns is-centered has-text-centered">
+                <div class="column">
+                    <h2 class="title is-3">Comparative Visualization Results across Ten Representative Scenarios</h2>
+                    <div class="content has-text-justified">
+                        <center>
+                            <img src="./static/videos/dataset.png" alt="Pipeline Image" width="80%">
+                        </center>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <section class="section">
-        <div class="container is-max-desktop is-centered">
-            <center>
-                <h2 class="title is-3">Cross-domain Generalization</h2>
-            </center>
-            <br>
-            <div class="content has-text-justified">
-                <p>
-                    TrackVLA is capable of cross-domain generalization, enabling robust tracking across diverse scene styles, viewpoints, and camera parameters without additional adaptation.
-                </p>
-                <!-- <div class="videos-flex"> -->
-                <center>
-                    <video poster="" id="go1-inside-2-main" autoplay controls muted loop playsinline width="80%">
-                        <source src="./static/videos/passive.mp4" type="video/mp4">
-                    </video>
-                </center>
-                <!-- </div> -->
-            </div>
-        </div>
     </section>
 
     <section class="section" id="BibTeX">
