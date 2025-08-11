@@ -263,10 +263,10 @@
                     <div class="content has-text-justified">
                         <strong>
                             In (a), the parking path involves both forward and backward gears, resulting in 
-                            discontinuous segments with <span style="color: #99ff99;">sharp turning points</span>. 
-                            In (b), under the same scenario, <span style="color: #99ff99;">different drivers may yield distinct parking solutions</span>. 
-                            In (c), the blue path <span style="color: #44cc44;">accumulates errors and causes collisions</span>, 
-                            but the green path can <span style="color: #44cc44;">recover from mistakes occurring in the first segment</span>. 
+                            discontinuous segments with <span style="color: #66cc66;">sharp turning points</span>. 
+                            In (b), under the same scenario, <span style="color: #66cc66;">different drivers may yield distinct parking solutions</span>. 
+                            In (c), the blue path <span style="color: #66cc66;">accumulates errors and causes collisions</span>, 
+                            but the green path can <span style="color: #66cc66;">recover from mistakes occurring in the first segment</span>. 
                         </strong>
                         <br>
                         <br>
@@ -281,8 +281,8 @@
                     <h2 class="title is-3">Framework</h2>
                     <div class="content has-text-justified">
                         <strong>
-                            A BEV encoder first takes inputs and <span style="color: #8ee78e;">obtains the scene features as key and value for cross-attention</span>. 
-                            Next, a query-based decoder <span style="color: #8ee78e;">explores both backward and forward gear</span>, where the endpoint serves as the standpoint in the next segment, thereby <span style="color: #8ee78e;">rolling out autoregressively</span> and producing multimodal parking paths. 
+                            A BEV encoder first takes inputs and <span style="color: #66cc66;">obtains the scene features as key and value for cross-attention</span>. 
+                            Next, a query-based decoder <span style="color: #66cc66;">explores both backward and forward gear</span>, where the endpoint serves as the standpoint in the next segment, thereby <span style="color: #66cc66;">rolling out autoregressively</span> and producing multimodal parking paths. 
                             Finally, we select the optimal path and utilize the predicted waypoints to control the vehicle. 
                         </strong>
                         <br>
@@ -302,10 +302,10 @@
                     <h2 class="title is-3">Performance</h2>
                     <div class="content has-text-justified">
                         <strong>
-                            We compare MultiPark to <span style="color: #7ddb7d;">six competitive baselines</span>.
+                            We compare MultiPark to <span style="color: #66cc66;">six competitive baselines</span>.
                             Note that all baselines are trained on the same dataset until convergence, and we employ the same encoder network as ours for fair comparison.
                             We report the test set results in the Table.
-                            Notably, <span style="color: #7ddb7d;">MultiPark achieves SOTA closed-loop performance on real-world datasets</span> and consistently outperforms the baselines in all metrics, underscoring its generalization across various scenarios.
+                            Notably, <span style="color: #66cc66;">MultiPark achieves SOTA closed-loop performance on real-world datasets</span> and consistently outperforms the baselines in all metrics, underscoring its generalization across various scenarios.
                         </strong>
                         <br>
                         <br>
