@@ -269,7 +269,6 @@
                             but the green path can <strong><span style="color: #14CD81;">recover from mistakes occurring in the first segment</span></strong>. 
                         </p>
                         <br>
-                        <br>
                         <center>
                             <img src="./static/videos/motivation.jpg" alt="Motivation Image" width="100%">
                         </center>
@@ -281,11 +280,10 @@
                     <h2 class="title is-3">Framework</h2>
                     <div class="content has-text-justified">
                         <p>
-                            A BEV encoder first takes inputs and <strong><span style="color: #02DE6D;">obtains the scene features as key and value for cross-attention</span></strong>. 
-                            Next, a query-based decoder <strong><span style="color: #02DE6D;">explores both backward and forward gear</span></strong>, where the endpoint serves as the standpoint in the next segment, thereby <strong><span style="color: #02DE6D;">rolling out autoregressively</span></strong> and producing multimodal parking paths. 
+                            A BEV encoder first takes inputs and <strong><span style="color: #14CD81;">obtains the scene features as key and value for cross-attention</span></strong>. 
+                            Next, a query-based decoder <strong><span style="color: #14CD81;">explores both backward and forward gear</span></strong>, where the endpoint serves as the standpoint in the next segment, thereby <strong><span style="color: #14CD81;">rolling out autoregressively</span></strong> and producing multimodal parking paths. 
                             Finally, we select the optimal path and utilize the predicted waypoints to control the vehicle. 
                         </p>
-                        <br>
                         <br>
                         <center>
                             <img src="./static/videos/framework.png" alt="Framework Image" width="100%">
@@ -301,13 +299,12 @@
                 <div class="column">
                     <h2 class="title is-3">Performance</h2>
                     <div class="content has-text-justified">
-                        <strong>
-                            We compare MultiPark to <span style="color: #02DE6D;">six competitive baselines</span>.
+                        <p>
+                            We compare MultiPark to <strong><span style="color: #02DE6D;">six competitive baselines</span></strong>.
                             Note that all baselines are trained on the same dataset until convergence, and we employ the same encoder network as ours for fair comparison.
                             We report the test set results in the Table.
-                            Notably, <span style="color: #02DE6D;">MultiPark achieves SOTA closed-loop performance on real-world datasets</span> and consistently outperforms the baselines in all metrics, underscoring its generalization across various scenarios.
-                        </strong>
-                        <br>
+                            Notably, <strong><span style="color: #02DE6D;">MultiPark achieves SOTA closed-loop performance on real-world datasets</span></strong> and consistently outperforms the baselines in all metrics, underscoring its generalization across various scenarios.
+                        </p>
                         <br>
                         <center>
                             <img src="./static/videos/performance.png" alt="Performance Image" width="100%">
